@@ -1,0 +1,44 @@
+
+警告注意
+return 2**(leftdepth+1)-1  # 或者使用(2 << leftdepth) - 1 但是使用2^(leftdepth+1)-1会产生报错
+
+
+
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def countNodes(self, root: Optional[TreeNode]) -> int:
+
+        if not root:
+            return 0
+
+        node_left = root.left
+        node_right = root.right
+        leftdepth = rightdepth =0
+        while node_left:
+            node_left = node_left.left
+            leftdepth += 1
+        while node_right:
+
+            node_right = node_right.right
+            rightdepth += 1
+
+        if rightdepth == leftdepth:
+            # print(2**(leftdepth+1)-1)
+            return 2**(leftdepth+1)-1  # 或者使用(2 << leftdepth) - 1 但是使用2^(leftdepth+1)-1会产生报错
+ 
+        left_number = self.countNodes(root.left)
+        # print(left_number)
+        right_number = self.countNodes(root.right)
+        # print(right_number)
+
+        return left_number +right_number +1
+
+
+
+
+        

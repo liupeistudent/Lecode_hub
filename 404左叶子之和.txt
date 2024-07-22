@@ -1,0 +1,31 @@
+
+left_number =  root.left.val 
+针对此处需要将root.left.val赋值给left_number而不是直接return出来
+
+左叶子是指当前节点的左节点存在，但是当前节点的左节点的左右节点不存在
+
+
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def sumOfLeftLeaves(self, root: Optional[TreeNode]) -> int:
+        if not root:
+            return 0
+        if not root.left and not root.right:
+            return 0
+        left_number = self.sumOfLeftLeaves(root.left)
+
+        if root.left and not root.left.left and not root.left.right:
+            left_number =  root.left.val
+
+        right_number = self.sumOfLeftLeaves(root.right)
+
+        sum =left_number + right_number
+
+        return sum
+
+         

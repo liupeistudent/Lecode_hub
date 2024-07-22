@@ -1,0 +1,45 @@
+
+
+始终有点没看懂，需要后续继续处理
+
+注意使用self.用于定于实例类
+
+
+
+
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def findBottomLeftValue(self, root: Optional[TreeNode]) -> int:
+        # self.result = None
+        # self.max_depth = float('-inf') 
+        # # self.depth = 0
+        # self.get_left(root,0)
+        # return self.result
+        self.max_depth = float('-inf')
+        self.result = None
+        self.get_left(root, 0)
+        return self.result
+
+
+    def get_left(self ,node ,depth):
+
+        if not node.left and not node.right:
+            if depth> self.max_depth :
+                self.max_depth = depth
+                self.result = node.val
+            return
+            
+        if node.left:
+            depth += 1
+            self.get_left(node.left,depth)
+            depth -= 1
+
+        if node.right:
+            depth += 1
+            self.get_left(node.right,depth)
+            depth -= 1

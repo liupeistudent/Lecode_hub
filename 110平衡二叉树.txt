@@ -1,0 +1,31 @@
+
+
+
+if left_height == -1 or right_height == -1 or abs(left_height-right_height)>1 :  #不明白为什么要添加这一行
+#left_height == -1 or right_height == -1用于判断左子树或右子树是否平衡，如果同时满足当前节点的左右子树和高度差不超过一，那么才能说整个二叉树是平衡的
+
+
+
+
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def isBalanced(self, root: Optional[TreeNode]) -> bool:
+
+
+        def get_height(node):
+            if not node:
+                return 0
+            left_height = get_height(node.left)
+            right_height = get_height(node.right)
+            if left_height == -1 or right_height == -1 or abs(left_height-right_height)>1 :  #不明白为什么要添加这一行
+            #left_height == -1 or right_height == -1用于判断左子树或右子树是否平衡，如果同时满足当前节点的左右子树和高度差不超过一，那么才能说整个二叉树是平衡的
+                return -1
+            else:
+                return 1+max(left_height,right_height)
+        result = get_height(root)
+        return result !=-1
